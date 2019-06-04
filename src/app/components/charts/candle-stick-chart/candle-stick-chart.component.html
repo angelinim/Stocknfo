@@ -1,3 +1,15 @@
-<p>
-  candle-stick-chart works!
-</p>
+
+<ng-container class="chart-area">
+    <!-- <div class="test">
+
+    </div> -->
+  <google-chart #chart
+  [title]="chartTitle"
+  [type]="chartType"
+  [data]="OHLCdataPoints"
+  [columnNames]="columnNames"
+  [options]="options"
+  [width]="chartWidth"
+  [height]="chartHeight">
+  </google-chart>
+</ng-container>

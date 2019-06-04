@@ -10,6 +10,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { CandleStickChartComponent } from './components/charts/candle-stick-chart/candle-stick-chart.component';
 
+
+import { GoogleChartsModule } from 'angular-google-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,8 @@ import { CandleStickChartComponent } from './components/charts/candle-stick-char
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

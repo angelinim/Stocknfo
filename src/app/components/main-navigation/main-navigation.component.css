@@ -15,3 +15,8 @@
   top: 0;
   z-index: 1;
 }
+
+.chart-container{
+  height: 93%;
+  width: 100%;
+}

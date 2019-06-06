@@ -1,4 +1,4 @@
 export interface stockInformationOHLC{
-    metadata: any;
-    timeSeries: any;
+    metadata: Object;
+    timeSeries: Object;
 }

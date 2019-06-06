@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
+import { async } from 'q';
 
 @Component({
   selector: 'app-candle-stick-chart',
@@ -9,6 +10,7 @@ import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
 })
 export class CandleStickChartComponent implements OnInit {
 
+  readyToPlot: boolean = false;
   chartTitle = '';
   chartType = 'CandlestickChart';
   chartWidth = '1700';
@@ -29,20 +31,17 @@ export class CandleStickChartComponent implements OnInit {
       risingColor: { strokeWidth: 1, fill: '#0f9d58' },   // green
     }
   };
-  columnNames = ['Date/Time', "A", "B", "C", "D"];
+  columnNames = ['Date/Time', "OHLC", "B", "C", "D"];
   data: stockInformationOHLC;
   OHLCdataPoints: any[] = [];
 
   constructor(private avs: AlphaVantageService) { }
 
-  ngOnInit() {
+ ngOnInit() {
     this.avs.getOHLCinfo().subscribe(
       OHLCdata=>{
-        this.data = {
-          metadata: OHLCdata['Meta Data'],
-          timeSeries: OHLCdata['Time Series '+'('+OHLCdata['Meta Data']['4. Interval']+')']
-        },
-        //console.log(this.data.timeSeries);
+        this.data = OHLCdata;
+        console.log(this.data);
         this.generateDataPointLists(this.data);
       }
     );
@@ -54,13 +53,14 @@ export class CandleStickChartComponent implements OnInit {
     const entries = Object.entries(jsonData.timeSeries);
 
     for(let entry of entries){
+      console.log(entry[0]);
       this.OHLCdataPoints.unshift([entry[0], parseFloat(entry[1]["3. low"]),
                                     parseFloat(entry[1]["1. open"]),
                                     parseFloat(entry[1]["4. close"]),
                                     parseFloat(entry[1]["2. high"])]);
     }
+    this.readyToPlot = true;
     console.log(this.OHLCdataPoints);
-    
   }
 
 }

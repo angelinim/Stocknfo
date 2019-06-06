@@ -3,7 +3,8 @@
     <!-- <div class="test">
 
     </div> -->
-  <google-chart #chart
+  <div >
+  <google-chart *ngIf="readyToPlot" #chart
   [title]="chartTitle"
   [type]="chartType"
   [data]="OHLCdataPoints"
@@ -12,4 +13,5 @@
   [width]="chartWidth"
   [height]="chartHeight">
   </google-chart>
+  </div>
 </ng-container>

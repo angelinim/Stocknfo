@@ -1,17 +1,10 @@
 
-<ng-container class="chart-area">
-    <!-- <div class="test">
-
-    </div> -->
-  <div >
-  <google-chart *ngIf="readyToPlot" #chart
-  [title]="chartTitle"
-  [type]="chartType"
-  [data]="OHLCdataPoints"
-  [columnNames]="columnNames"
-  [options]="options"
-  [width]="chartWidth"
-  [height]="chartHeight">
-  </google-chart>
-  </div>
-</ng-container>
+<mat-card class="card-test" >
+    <google-chart *ngIf="readyToPlot" class="test" #chart
+    [title]="chartTitle"
+    [type]="chartType"
+    [data]="OHLCdataPoints"
+    [columnNames]="columnNames"
+    [options]="options">
+    </google-chart>
+</mat-card>

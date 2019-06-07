@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
-import { async } from 'q';
 
 @Component({
   selector: 'app-candle-stick-chart',
@@ -17,7 +16,6 @@ export class CandleStickChartComponent implements OnInit {
   chartHeight = '800';
   
   options = {
-    legend: 'none',
     backgroundColor: '#303030',
     chartArea: {left:150,top:40,width:'90%',height:'75%'},
     hAxis: { textStyle: {color: 'snow'},
@@ -27,8 +25,8 @@ export class CandleStickChartComponent implements OnInit {
             format: 'currency'
     },
     candlestick: {
-      fallingColor: { strokeWidth: 1, stroke:'#a52714' }, // red
-      risingColor: { strokeWidth: 1, fill: '#0f9d58' },   // green
+      fallingColor: { strokeWidth: 2, stroke:'#a52714' }, // red
+      risingColor: { strokeWidth: 2, fill: '#0f9d58' },   // green
     }
   };
   columnNames = ['Date/Time', "OHLC", "B", "C", "D"];

@@ -17,12 +17,16 @@ export class StockQuoteComponent implements OnInit, OnChanges {
   constructor(private avs: AlphaVantageService) { }
 
   ngOnInit() {
-    this.avs.getStockQuote(this.symbol).subscribe(
-      info => this.information = info
-    );
   }
 
   ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    throw new Error("Method not implemented.");
+    console.log(changes.symbol.currentValue);
+
+    if(changes.symbol){
+      this.avs.getStockQuote(this.symbol).subscribe(
+        info => this.information = info
+      );
+    }
+    
   }
 }

@@ -18,6 +18,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { WatchlistComponent } from './components/watchlist/watchlist.component';
 import { SearchComponent } from './components/search/search.component';
 import { StockQuoteComponent } from './components/stock-quote/stock-quote.component';
+import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StockQuoteComponent } from './components/stock-quote/stock-quote.compon
     CandleStickChartComponent,
     WatchlistComponent,
     SearchComponent,
-    StockQuoteComponent
+    StockQuoteComponent,
+    WatchlistCardComponent
   ],
   imports: [
     BrowserModule,

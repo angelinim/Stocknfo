@@ -7,6 +7,7 @@ import { SearchComponent } from './components/search/search.component';
 const routes: Routes = [
   {path: 'main', component: MainNavigationComponent, children: [
     {path: 'search', component: SearchComponent},
+    {path: 'watchlist', component: WatchlistComponent}
   ]},
   {path: '', redirectTo: 'main', pathMatch: 'full'},
   {path: '**', redirectTo: 'main', pathMatch: 'full'}

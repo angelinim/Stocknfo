@@ -1,19 +1,3 @@
-<div class="container">
-  <mat-card>
-      <form class="search-form">
-          <mat-form-field class="search-field" >
-            <mat-label class="center-label">Stock Ticker</mat-label>
-            <input matInput type='text'
-                            name='stockNameInput'
-                            [(ngModel)]='stockName'
-                            [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let stock of stockList; let i=index" [value]="stock">
-                {{stock}} | {{nameList[i]}}
-              </mat-option>
-            </mat-autocomplete>
-            <mat-hint>eg. MSFT, GOOG </mat-hint>
-          </mat-form-field>
-        </form>
-  </mat-card>
-</div>
+<p>
+  watchlist works!
+</p>

@@ -10,19 +10,23 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule,
          MatIconModule, MatListModule, MatAutocompleteModule, 
-         MatInputModule, MatCardModule, MatSelectModule } from '@angular/material';
+         MatInputModule, MatCardModule, MatSelectModule, MatTableModule } from '@angular/material';
 import { CandleStickChartComponent } from './components/charts/candle-stick-chart/candle-stick-chart.component';
 
 
 import { GoogleChartsModule } from 'angular-google-charts';
 import { WatchlistComponent } from './components/watchlist/watchlist.component';
+import { SearchComponent } from './components/search/search.component';
+import { StockQuoteComponent } from './components/stock-quote/stock-quote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavigationComponent,
     CandleStickChartComponent,
-    WatchlistComponent
+    WatchlistComponent,
+    SearchComponent,
+    StockQuoteComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +43,7 @@ import { WatchlistComponent } from './components/watchlist/watchlist.component';
     MatAutocompleteModule,
     MatCardModule,
     MatSelectModule,
+    MatTableModule,
     FormsModule,
     GoogleChartsModule
   ],

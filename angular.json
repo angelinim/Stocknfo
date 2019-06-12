@@ -30,7 +30,9 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/app/config.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

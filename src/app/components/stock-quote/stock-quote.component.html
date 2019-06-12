@@ -1,0 +1,44 @@
+<!-- <div>
+  
+  <table class='stock-table'>
+    <caption>Symbol: Change percent:</caption>
+    <tr>
+      <td>05. price</td>
+      <td>07. Latest Trading Day</td>
+    </tr>
+    <tr>
+      <td>02. Open</td>
+      <td>06. volume</td>
+    </tr>
+    <tr>
+      <td>03. High</td>
+      <td>08. previous close</td>
+    </tr>
+    <tr>
+      <td>04. low</td>
+      <td>09. change</td>
+    </tr>
+  </table>
+</div> -->
+
+<div class='top-info'>
+  <h1 class='top-text'>Symbol: {{information["01. symbol"]}}   Change:{{information["10. change percent"]}}</h1>
+</div>
+
+<div class='left-info'>
+<mat-list>
+  <mat-list-item>05. price: {{information["05. price"]}}</mat-list-item>
+  <mat-list-item>02. open:  {{information["02. open"]}}</mat-list-item>
+  <mat-list-item>03. high:  {{information["03. high"]}}</mat-list-item>
+  <mat-list-item>04. low:   {{information["04. low"]}}</mat-list-item>
+</mat-list>
+</div>
+
+<div class='right-info'>
+<mat-list>
+  <mat-list-item>07. latest trading day: {{information["07. latest trading day"]}}</mat-list-item>
+  <mat-list-item>06. volume: {{information["06. volume"]}}</mat-list-item>
+  <mat-list-item>08. previous close: {{information["08. previous close"]}}</mat-list-item>
+  <mat-list-item>09. change: {{information["09. change"]}}</mat-list-item>
+</mat-list>
+</div>

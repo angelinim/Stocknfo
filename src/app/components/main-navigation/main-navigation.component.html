@@ -5,7 +5,7 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item routerLink="search">Search</a>
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
@@ -22,10 +22,13 @@
       </button>
       <span>Stocknfo</span>
     </mat-toolbar>
+    
+    
     <!-- Add Content Here -->
     <div class="view-container">
+      <router-outlet></router-outlet>
       <!-- <app-candle-stick-chart></app-candle-stick-chart> -->
-      <app-watchlist></app-watchlist>
+      <!-- <app-watchlist></app-watchlist> -->
     </div>
     
   </mat-sidenav-content>

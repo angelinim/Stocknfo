@@ -3,14 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, map, startWith } from 'rxjs/operators'
 import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
-import { config } from 'src/app/config.js';
+
+import * as config from 'src/app/config.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlphaVantageService {
 
-  private API_KEY: string = config.alphavantage;
+  
+  private API_KEY: string = config.alphaVantageKey;
   functionStr: string = "TIME_SERIES_INTRADAY";
   symbolStr: string = "MSFT";
   intervalStr: string = "5min"
@@ -58,6 +60,17 @@ export class AlphaVantageService {
       console.log("ERROR: "+err);
     }
      
+  }
+
+  getStockQuote(symbol: string){
+    try{
+      return this.http.get(this.urlForRequest+'&function=GLOBAL_QUOTE&symbol='+symbol).pipe(
+        map(info => info["Global Quote"])
+      );
+    }
+    catch(err){
+
+    }
   }
 
 

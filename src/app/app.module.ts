@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
@@ -20,6 +20,12 @@ import { SearchComponent } from './components/search/search.component';
 import { StockQuoteComponent } from './components/stock-quote/stock-quote.component';
 import { WatchlistCardComponent } from './components/watchlist-card/watchlist-card.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { LoginComponent } from './components/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +34,8 @@ import { WatchlistCardComponent } from './components/watchlist-card/watchlist-ca
     WatchlistComponent,
     SearchComponent,
     StockQuoteComponent,
-    WatchlistCardComponent
+    WatchlistCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,11 @@ import { WatchlistCardComponent } from './components/watchlist-card/watchlist-ca
     MatSelectModule,
     MatTableModule,
     FormsModule,
-    GoogleChartsModule
+    ReactiveFormsModule,
+    GoogleChartsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

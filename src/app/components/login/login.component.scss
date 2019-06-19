@@ -1,0 +1,40 @@
+.register{
+    position: absolute;
+    width: 40%;
+    left:55px;
+    padding: 100px;
+    
+}
+
+.login{
+    position: absolute;
+    width: 40%;
+    right: 0px;
+    padding-top: 100px;
+}
+
+.card-div{
+    position: absolute;
+    width:100%;
+    height:93%;
+    margin:0;
+}
+
+.card{
+    position: relative;
+    width:90%;
+    height:90%;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.form{
+    min-width: 300px;
+    max-width: 350px;
+}
+
+.button{
+    position: relative;
+    margin-top: 25px;
+    margin-left: 17%;
+}

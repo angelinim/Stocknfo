@@ -1,4 +1,6 @@
 .watchlist-card{
+    display: flex;
+    flex-direction: column;
     max-width: 300px;
     max-height: 450px;
     margin: 5%;
@@ -7,4 +9,12 @@
 .button{
     position: relative;
     margin-left:7%;
+}
+
+.top-info{
+    position: relative;
+    padding: 35px;
+    width: 90%;
+    top: 10px;
+    left: 10px;
 }

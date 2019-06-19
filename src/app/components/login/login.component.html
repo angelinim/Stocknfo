@@ -1,0 +1,75 @@
+<div class="card-div">
+  <mat-card class="card">
+    <mat-card-content>
+      <div class="register">
+          <mat-card-title class="button">Register</mat-card-title>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistration()">
+          <mat-form-field class="form">
+            <mat-label>Username</mat-label>
+            <input matInput type="text"
+                            maxlength="18"
+                            id="regUname"
+                            formControlName="regUname">
+          </mat-form-field>
+          <br>
+          <br>
+          <mat-form-field class="form">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email"
+                            id="regEmail"
+                            formControlName="regEmail">
+          </mat-form-field>
+          <br>
+          <br>
+          <mat-form-field class="form">
+            <mat-label>Password</mat-label>
+            <input matInput type="password"
+                            maxlength="24"
+                            id="regPass"
+                            formControlName="regPass">
+          </mat-form-field>
+          <br>
+          <br>
+          <mat-form-field class="form">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password"
+                            maxlength="24"
+                            id="regPassConf"
+                            formControlName="regPassConf">
+          </mat-form-field>
+          <br>
+          <br>
+          <button mat-stroked-button color="primary" class="button" type="submit">Register</button>
+        </form>
+      </div>
+
+
+      <div class="login">
+          <mat-card-title class="button">Login</mat-card-title>
+          <br>
+          <br>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+            <mat-form-field class="form">
+              <mat-label>Username</mat-label>
+              <input matInput type="text"
+                              maxlength="18"
+                              id="logUname"
+                              formControlName="logUname">
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field class="form">
+                <mat-label>Password</mat-label>
+                <input matInput type="password"
+                                maxlength="24"
+                                id="logPass"
+                                formControlName="logPass">
+              </mat-form-field>
+            <br>
+            <br>
+            <button mat-stroked-button color="primary" class="button" type="submit">Login</button>
+          </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

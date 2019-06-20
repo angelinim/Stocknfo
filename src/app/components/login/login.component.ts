@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   private registrationForm: FormGroup;
   private loginForm: FormGroup;
+  public registrationMessage: string;
 
   constructor(private userService: UserServiceService) { }
 
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.loginForm = new FormGroup({
-      logUname: new FormControl(),
+      logEmail: new FormControl(),
       logPass: new FormControl()
     });
   }
@@ -35,17 +36,36 @@ export class LoginComponent implements OnInit {
     const email = newUser.regEmail;
     const uname = newUser.regUname;
 
-    if(pass === passConf && email){
-      this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname);
+    if(pass === passConf && email && uname){
+      if(this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname)){
+        alert("account created successfully");
+      }
+      else{
+        alert("error creating account");
+      }
     }
     else{
-      alert("error");
+      alert("error creating account");
     }
     
 
   }
 
   onSubmitLogin(){
-    console.log(this.loginForm);
+    const newUser = this.loginForm.value;
+    const email = newUser.logEmail;
+    const pass = newUser.logPass;
+
+    if(email && pass){
+      if(this.userService.login(email, pass)){
+        alert("login success")
+      }
+      else{
+        alert("failed to log in")
+      }
+    }
+    else{
+      alert("please enter valid Email and password...")
+    }
   }
 }

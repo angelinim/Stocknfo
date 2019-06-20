@@ -50,11 +50,10 @@
           <br>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
             <mat-form-field class="form">
-              <mat-label>Username</mat-label>
+              <mat-label>Email</mat-label>
               <input matInput type="text"
-                              maxlength="18"
-                              id="logUname"
-                              formControlName="logUname">
+                              id="logEmail"
+                              formControlName="logEmail">
             </mat-form-field>
             <br>
             <br>

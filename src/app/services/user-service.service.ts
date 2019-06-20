@@ -3,16 +3,12 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from 'src/app/interfaces/stock-information'
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-interface User{
-  userName: String;
-  userId: String;
-  userEmail: String;
-  watchlist?: [];
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,15 +22,27 @@ export class UserServiceService {
               private afs: AngularFirestore
   ) { }
 
-  createNewUser(email: string, password: string){
-    const userCredential = this.afAuth.auth.createUserWithEmailAndPassword(email, password).catch(
-      err=> console.log("ERROR: "+ err.message)
-    );
-
+  createNewUser(email: string, password: string, userName: string){
     
-  }
+    
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
+      cred => {
+        //console.log(cred.user.uid)
+        this.currentUser = {
+          userName: userName,
+          userId: cred.user.uid,
+          userEmail: email,
+          watchlist: ["VZ", "MSFT"]
+        }
+        this.afs.doc('users/'+cred.user.uid).set(this.currentUser);
+      }
+    ).catch(
+      err => {
+        return err.message
+      }
+    )
 
-  updateUserData(cred){
-    //TODO add user information using user.uid to add to firestore
+    //await console.log(userCredential);
+    
   }
 }

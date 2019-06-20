@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
     const pass = newUser.regPass;
     const passConf = newUser.regPassConf;
     const email = newUser.regEmail;
-
-    console.log(newUser);
+    const uname = newUser.regUname;
 
     if(pass === passConf && email){
-      this.userService.createNewUser(newUser.regEmail, newUser.regPass);
+      this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname);
     }
     else{
       alert("error");

@@ -14,3 +14,8 @@ export interface User{
     userEmail: String;
     watchlist?: string[];
   }
+
+export interface DBresponse{
+    isSuccess: boolean;
+    message?: string;
+}

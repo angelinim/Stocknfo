@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserServiceService } from 'src/app/services/user-service.service'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
   public registrationMessage: string;
 
-  constructor(private userService: UserServiceService) { }
+  constructor(private userService: UserServiceService,
+              public snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -37,15 +39,20 @@ export class LoginComponent implements OnInit {
     const uname = newUser.regUname;
 
     if(pass === passConf && email && uname){
-      if(this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname)){
-        alert("account created successfully");
-      }
-      else{
-        alert("error creating account");
-      }
+      this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname).then(
+        response => {
+          if(response.isSuccess){
+            //TODO route to new page as well as display success message.
+            this.snackbar.open(response.message,"",{duration: 4000});
+          }
+          else{
+            this.snackbar.open(response.message,"",{duration: 4000});
+          }
+        }
+      );
     }
     else{
-      alert("error creating account");
+      this.snackbar.open("error... Make sure passwords match and all fields are filled in", "", { duration: 4000} )
     }
     
 
@@ -57,15 +64,20 @@ export class LoginComponent implements OnInit {
     const pass = newUser.logPass;
 
     if(email && pass){
-      if(this.userService.login(email, pass)){
-        alert("login success")
-      }
-      else{
-        alert("failed to log in")
-      }
+      this.userService.login(email, pass).then(
+        response => {
+          if(response.isSuccess){
+            //TODO reroute same as createAccount()
+            this.snackbar.open(response.message,"",{duration: 4000});
+          }
+          else{
+            this.snackbar.open(response.message);
+          }
+        }
+      );
     }
     else{
-      alert("please enter valid Email and password...")
+      this.snackbar.open("please enter valid Email and password...", "", { duration: 4000} )
     }
   }
 }

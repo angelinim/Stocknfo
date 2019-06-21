@@ -10,7 +10,8 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule,
          MatIconModule, MatListModule, MatAutocompleteModule, 
-         MatInputModule, MatCardModule, MatSelectModule, MatTableModule } from '@angular/material';
+         MatInputModule, MatCardModule, MatSelectModule, MatTableModule,
+         MatSnackBarModule } from '@angular/material';
 import { CandleStickChartComponent } from './components/charts/candle-stick-chart/candle-stick-chart.component';
 
 
@@ -53,6 +54,7 @@ import { LoginComponent } from './components/login/login.component';
     MatCardModule,
     MatSelectModule,
     MatTableModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     GoogleChartsModule,

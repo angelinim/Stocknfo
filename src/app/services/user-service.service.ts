@@ -3,58 +3,89 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { User } from 'src/app/interfaces/stock-information'
+import { User, DBresponse } from 'src/app/interfaces/stock-information'
+
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
 
-  private currentUser: User;
+  currentUser$: Observable<User>;
+  public dbInteractionInformation: DBresponse;
 
-  constructor(
-              private afAuth: AngularFireAuth,
-              private afs: AngularFirestore
-  ) { }
+  constructor(private afAuth: AngularFireAuth,
+              private afs: AngularFirestore) {
+
+      this.currentUser$ = this.afAuth.authState.pipe(
+        switchMap(user => {
+          if(user){
+            return this.afs.doc<User>('users/'+user.uid).valueChanges();
+          }
+          else{
+            return of (null);
+          }
+        })
+      );
+    }
 
   async createNewUser(email: string, password: string, userName: string){
-
-    var isSuccess = false;
 
     await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(
       cred => {
         //console.log(cred.user.uid)
-        this.currentUser = {
+        const data = {
           userName: userName,
           userId: cred.user.uid,
           userEmail: email,
           watchlist: ["VZ", "MSFT"]
         }
-        this.afs.doc('users/'+cred.user.uid).set(this.currentUser);
-        isSuccess = true;
+        
+        this.afs.doc('users/'+cred.user.uid).set(data);
+        this.dbInteractionInformation ={
+          isSuccess: true,
+          message: "account created successfully"
+        }
       }
     ).catch(
       err => {
-        return err.message
+        this.dbInteractionInformation ={
+          isSuccess: false,
+          message: err.message
+        }
+        
       }
     )
 
-    return isSuccess;
+    console.log(this.currentUser$);
+    return this.dbInteractionInformation;
     //await console.log(userCredential);
     
   }
 
   async login(email: string, password: string){
 
-    var loginSuccess: boolean = true;
-
-    await this.afAuth.auth.signInWithEmailAndPassword(email, password).catch(
+    await this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
+      cred =>{
+        this.currentUser$ = this.afs.doc<User>('users/'+cred.user.uid).valueChanges();
+        this.dbInteractionInformation ={
+          isSuccess: true,
+          message: "Log in Successful... Welcome Back"
+        }
+      }
+    ).catch(
       err => {
         console.log(err.message);
-        loginSuccess = false;
+        this.dbInteractionInformation ={
+          isSuccess: false,
+          message: err.message
+        }
       }
     );
 
-    return loginSuccess;
+    console.log(this.currentUser$);
+    return this.dbInteractionInformation;
   }
 }

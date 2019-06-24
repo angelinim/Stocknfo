@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserServiceService } from 'src/app/services/user-service.service'
+import { UserServiceService } from 'src/app/services/user-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   public registrationMessage: string;
 
   constructor(private userService: UserServiceService,
-              public snackbar: MatSnackBar) { }
+              public snackbar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() {
     this.registrationForm = new FormGroup({
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname).then(
         response => {
           if(response.isSuccess){
-            //TODO route to new page as well as display success message.
+            this.router.navigate(['main']);
             this.snackbar.open(response.message,"",{duration: 4000});
           }
           else{
@@ -67,7 +69,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(email, pass).then(
         response => {
           if(response.isSuccess){
-            //TODO reroute same as createAccount()
+            this.router.navigate(['main']);
             this.snackbar.open(response.message,"",{duration: 4000});
           }
           else{

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -17,7 +18,8 @@ export class UserServiceService {
   public dbInteractionInformation: DBresponse;
 
   constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore) {
+              private afs: AngularFirestore,
+              private router: Router) {
 
       this.currentUser$ = this.afAuth.authState.pipe(
         switchMap(user => {
@@ -29,6 +31,12 @@ export class UserServiceService {
           }
         })
       );
+
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
     }
 
   async createNewUser(email: string, password: string, userName: string){
@@ -84,8 +92,13 @@ export class UserServiceService {
         }
       }
     );
-
-    console.log(this.currentUser$);
     return this.dbInteractionInformation;
+  }
+
+
+  async logout(){
+    await this.afAuth.auth.signOut();
+    this.router.navigate(['main/login']);
+    this.currentUser$.subscribe(me=>console.log(me));
   }
 }

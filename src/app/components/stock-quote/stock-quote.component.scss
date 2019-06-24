@@ -2,8 +2,17 @@
 .card-info{
     position: relative;
     margin: 5%;
-
+    height: 500px;
 }
+
+.button{
+    margin-left: 60px;
+    
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
 
 .top-info{
     position: relative;
@@ -20,18 +29,14 @@
 
 .left-info{
     position: absolute;
-    width: 50%;
-    height:60%;
     left: 10px;
-    margin-top: 2%;
+    width: 50%;
 }
 
 .right-info{
     position: absolute;
-    width: 50%;
-    height: 60%;
     right: 10px;
-    margin-top: 2%;
+    width: 50%;
 }
 
 .card-header{
@@ -39,8 +44,6 @@
 }
 
 .card{
-    display: flex;
-    flex-direction: column;
     margin: 5%;
 }
 
@@ -49,9 +52,6 @@
     overflow: auto;
 }
 
-
-.card-footer{
-}
 
 .divider{
     width: 85%;

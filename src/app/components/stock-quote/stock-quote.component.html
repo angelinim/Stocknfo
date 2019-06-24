@@ -1,12 +1,15 @@
-<mat-card class='card'>
-  <mat-card-header class="card-header">
-    <div class='top-info'>
+<mat-card class='card-info'>
+    <mat-card-header class='top-info'>
       <mat-card-title class='top-text'>Symbol: {{information["01. symbol"]}}</mat-card-title>
       <mat-card-subtitle>Change:{{information["10. change percent"]}}</mat-card-subtitle>
+      <span class="spacer"></span>
+    </mat-card-header>
+    <div class="button">
+        <button mat-stroked-button color='primary'>Add To Watchlist</button>
     </div>
-  </mat-card-header>
 
-  <mat-card-content class="card-content">
+    <mat-card-content>
+
     <div class='left-info'>
       <mat-list class='list-info'>
         
@@ -37,6 +40,7 @@
     </div>
 
     <div class='right-info'>
+
       <mat-list class='list-info'>
         <mat-list-item>
             <mat-icon mat-list-icon>arrow_right</mat-icon>
@@ -64,10 +68,8 @@
             <h1 mat-line>Change: {{information["09. change"]}}</h1>
         </mat-list-item>
       </mat-list>
+
     </div>
+  
   </mat-card-content>
-<!--   
-  <mat-card-footer class="card-footer">
-    <button mat-stroked-button color='primary'>Add To Watchlist</button>
-  </mat-card-footer> -->
 </mat-card>

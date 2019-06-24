@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { UserServiceService } from 'src/app/services/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-navigation',
@@ -10,11 +12,23 @@ import { map } from 'rxjs/operators';
 })
 export class MainNavigationComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches)
-    );
+  constructor(private router: Router,
+              private userService: UserServiceService) {}
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  logout(){
+    this.userService.logout();
+  }
+
+  login(){
+    this.router.navigate(['main/login']);
+  }
+
+  watchlist(){
+    this.router.navigate(['main/watchlist']);
+  }
+
+  search(){
+    this.router.navigate(['main/search']);
+  }
 
 }

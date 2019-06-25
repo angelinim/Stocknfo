@@ -17,13 +17,12 @@ export class CandleStickChartComponent implements OnInit {
   
   options = {
     backgroundColor: '#303030',
-    chartArea: {left:150,top:40,width:'90%',height:'75%'},
-    hAxis: { textStyle: {color: 'snow'},
-              minValue: 100
-    },
+    chartArea: {left:80,top:12,width:'100%',height:'90%'},
+    hAxis: {textPosition: 'none', gridlines: {count: 25}},
     vAxis: {textStyle:{ color: 'snow'},
             format: 'currency'
     },
+    legend: {position: 'none'},
     candlestick: {
       fallingColor: { strokeWidth: 2, stroke:'#a52714' }, // red
       risingColor: { strokeWidth: 2, fill: '#0f9d58' },   // green

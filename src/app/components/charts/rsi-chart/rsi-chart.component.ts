@@ -12,10 +12,11 @@ export class RsiChartComponent implements OnInit {
   chartTitle= "RSI"
   options = {
     backgroundColor: '#303030',
-    chartArea: {left:50,top:40,width:'90%',height:'75%'},
+    chartArea: {left:80,top:12,width:'100%',height:'90%'},
     vAxis: {textStyle:{ color: 'snow'},
             ticks: [0, 30, 50, 70, 100]
     },
+    hAxis: {textPosition: 'none'},
     crosshair: {trigger: 'both',
                 color: "red"},
     legend: {position: 'none'}

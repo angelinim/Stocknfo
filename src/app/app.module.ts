@@ -28,6 +28,7 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { RsiChartComponent } from './components/charts/rsi-chart/rsi-chart.component';
 import { MacdChartComponent } from './components/charts/macd-chart/macd-chart.component';
+import { ChartContainerComponent } from './components/charts/chart-container/chart-container.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MacdChartComponent } from './components/charts/macd-chart/macd-chart.co
     WatchlistCardComponent,
     LoginComponent,
     RsiChartComponent,
-    MacdChartComponent
+    MacdChartComponent,
+    ChartContainerComponent
   ],
   imports: [
     BrowserModule,

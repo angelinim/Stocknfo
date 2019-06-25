@@ -16,7 +16,7 @@ export class MacdChartComponent implements OnInit {
   options = {
     series: {0: {type: "line", color: "blue"}, 1: {type: "line", color: "red"}, 2: {type: "steppedArea", color: "green"}},
     backgroundColor: '#303030',
-    chartArea: {left:50,top:0,width:'90%',height:'80%'},
+    chartArea: {left:80,top:0,width:'100%',height:'90%'},
     vAxis: {textStyle:{ color: 'snow'},
             ticks: [-2, -1, 0, 1, 2]
     },

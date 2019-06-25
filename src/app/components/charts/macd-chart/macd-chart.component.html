@@ -1,0 +1,8 @@
+<mat-card class="card-test" >
+    <google-chart *ngIf="readyToPlot" class="test" #chart
+    [type]="chartType"
+    [data]="MACDdataPoints"
+    [height]="chartHeight"
+    [options]="options">
+    </google-chart>
+</mat-card>

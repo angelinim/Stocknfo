@@ -71,6 +71,14 @@ export class AlphaVantageService {
     );
   }
 
+  getMACDinfo(){
+    return this.http.get(this.urlForRequest+'&function=MACD&series_type=open&time_period=14&interval='+this.intervalStr+'&symbol='+this.symbolStr).
+    pipe(
+      map(info => info["Technical Analysis: MACD"]),
+      tap(info => console.log(info))
+    );
+  }
+
   getStockQuote(symbol: string){
     try{
       return this.http.get(this.urlForRequest+'&function=GLOBAL_QUOTE&symbol='+symbol).pipe(

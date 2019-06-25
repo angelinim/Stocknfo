@@ -27,6 +27,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { RsiChartComponent } from './components/charts/rsi-chart/rsi-chart.component';
+import { MacdChartComponent } from './components/charts/macd-chart/macd-chart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RsiChartComponent } from './components/charts/rsi-chart/rsi-chart.compo
     StockQuoteComponent,
     WatchlistCardComponent,
     LoginComponent,
-    RsiChartComponent
+    RsiChartComponent,
+    MacdChartComponent
   ],
   imports: [
     BrowserModule,

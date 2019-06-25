@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { stockNames } from 'src/app/interfaces/stock-information';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -8,23 +9,25 @@ import { stockNames } from 'src/app/interfaces/stock-information';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  _stockName: string;
-  stockList: string[] = [];
-  nameList: string[] = [];
-  stockSymbol: string = '';
+  _stockName;
+  stockSymbol;
+  stockList;
 
   searchNameLength: number = 0;
 
   set stockName(stkname: string){
-    //console.log('New name: ' +stkname);
-    this._stockName = stkname.toUpperCase();
+    console.log('New name: ' +stkname);
+    this._stockName = stkname;
 
     if(this.searchNameLength % 2 === 0){
       this.avs.getSymbolSearch(stkname).subscribe(
         res => {
-          this.stockList = res.map(x => x["1. symbol"]);
-          this.nameList = res.map(x => x["2. name"]);
-        }
+          this.stockList = res;
+
+          
+          console.log(this.stockList)
+            
+          }
       );
     }
 
@@ -39,7 +42,7 @@ export class SearchComponent implements OnInit {
   searchStock(){
     this.stockSymbol = this.stockName;
     this.searchNameLength = 0;
-    console.log(this.stockSymbol);
+    console.log("SENDING:  " + this.stockSymbol);
   }
 
   constructor(private avs: AlphaVantageService) { }

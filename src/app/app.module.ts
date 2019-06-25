@@ -26,6 +26,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
+import { RsiChartComponent } from './components/charts/rsi-chart/rsi-chart.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoginComponent } from './components/login/login.component';
     SearchComponent,
     StockQuoteComponent,
     WatchlistCardComponent,
-    LoginComponent
+    LoginComponent,
+    RsiChartComponent
   ],
   imports: [
     BrowserModule,

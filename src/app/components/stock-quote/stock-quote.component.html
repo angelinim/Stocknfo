@@ -1,12 +1,16 @@
 <mat-card class='card-info'>
     <mat-card-header class='top-info'>
+      <mat-card-title style="text-transform:uppercase">{{symbol[1]}}</mat-card-title>
+
       <mat-card-title class='top-text'>Symbol: {{information["01. symbol"]}}</mat-card-title>
       <mat-card-subtitle>Change:{{information["10. change percent"]}}</mat-card-subtitle>
-      <span class="spacer"></span>
+      
+      
     </mat-card-header>
-    <div class="button">
-        <button mat-stroked-button color='primary'>Add To Watchlist</button>
-    </div>
+
+    <!-- have to create an add to watchlist function to firebase service -->
+    <button mat-stroked-button color='primary' class="button">Add To Watchlist</button>
+    <button mat-stroked-button color='primary' class="button" (click)="loadChart()">View Chart</button>
 
     <mat-card-content>
 

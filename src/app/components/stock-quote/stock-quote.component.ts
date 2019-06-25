@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stock-quote',
@@ -9,12 +10,13 @@ import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 export class StockQuoteComponent implements OnInit, OnChanges {
 
 
-  @Input() symbol: string = '';
+  @Input() symbol;
   information: {} = {};
 
 
 
-  constructor(private avs: AlphaVantageService) { }
+  constructor(private avs: AlphaVantageService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,10 +25,16 @@ export class StockQuoteComponent implements OnInit, OnChanges {
     console.log(changes.symbol.currentValue);
 
     if(changes.symbol){
-      this.avs.getStockQuote(this.symbol).subscribe(
+      this.avs.getStockQuote(this.symbol[0]).subscribe(
         info => this.information = info
       );
     }
     
+  }
+
+  loadChart(){
+    this.router.navigate(['main']);
+    //for now this routes to main but it will eventually 
+    //load the charts for the chosen stock.
   }
 }

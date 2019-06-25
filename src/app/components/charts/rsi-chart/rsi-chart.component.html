@@ -1,0 +1,8 @@
+<mat-card class="card-test" >
+    <google-chart *ngIf="readyToPlot" class="test" #chart
+    [title]="chartTitle"
+    [type]="chartType"
+    [data]="RSIdataPoints"
+    [options]="options">
+    </google-chart>
+</mat-card>

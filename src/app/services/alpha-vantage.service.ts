@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, map, startWith } from 'rxjs/operators'
+import { tap, map, startWith, filter } from 'rxjs/operators'
 import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
+import { stockNames } from 'src/app/interfaces/stock-information';
 
 import * as config from 'src/app/config.js';
 
@@ -15,20 +16,20 @@ export class AlphaVantageService {
   private API_KEY: string = config.alphaVantageKey;
   functionStr: string = "TIME_SERIES_INTRADAY";
   symbolStr: string = "MSFT";
-  intervalStr: string = "5min"
+  intervalStr: string = "60min"
   private urlForRequest: string = 'https://www.alphavantage.co/query?apikey='+this.API_KEY;
 
   
   constructor(private http: HttpClient) { }
 
 
-  getSymbolSearch(symbol: string): Observable<object[]>{
-    let count = 0;
+  getSymbolSearch(symbol: string){
 
     try{
-      return this.http.get<object[]>(this.urlForRequest+'&function=SYMBOL_SEARCH&keywords='+symbol)
+      return this.http.get(this.urlForRequest+'&function=SYMBOL_SEARCH&keywords='+symbol)
       .pipe(
-        map(info => info["bestMatches"])
+        map(info => info["bestMatches"].map(x => [x["1. symbol"], x["2. name"]])),
+        tap(info => console.log(info))
       );
     }
     catch(err){
@@ -60,6 +61,14 @@ export class AlphaVantageService {
       console.log("ERROR: "+err);
     }
      
+  }
+
+  getRSIinfo(){
+    return this.http.get(this.urlForRequest+'&function=RSI&series_type=open&time_period=14&interval='+this.intervalStr+'&symbol='+this.symbolStr).
+    pipe(
+      map(info => info["Technical Analysis: RSI"]),
+      tap(info => console.log(info))
+    );
   }
 
   getStockQuote(symbol: string){

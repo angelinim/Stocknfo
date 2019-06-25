@@ -51,7 +51,7 @@ export class CandleStickChartComponent implements OnInit {
     const entries = Object.entries(jsonData.timeSeries);
 
     for(let entry of entries){
-      console.log(entry[0]);
+      //console.log(entry[0]);
       this.OHLCdataPoints.unshift([entry[0], parseFloat(entry[1]["3. low"]),
                                     parseFloat(entry[1]["1. open"]),
                                     parseFloat(entry[1]["4. close"]),

@@ -11,6 +11,7 @@ export class StockQuoteComponent implements OnInit, OnChanges {
 
 
   @Input() symbol;
+  intervalSelect = "weekly"
   information: {} = {};
 
 

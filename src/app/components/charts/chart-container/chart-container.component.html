@@ -1,3 +1,23 @@
-<app-rsi-chart></app-rsi-chart>
-<app-candle-stick-chart></app-candle-stick-chart>
-<app-macd-chart></app-macd-chart>
+
+    <mat-card class = "area">
+        <mat-card-header>
+            <mat-card-title>Stock Symbol</mat-card-title>
+        </mat-card-header>
+
+        <!-- <mat-card-content class="content"> -->
+            
+        <div class="top-content">
+            <app-rsi-chart></app-rsi-chart>
+        </div>
+        <div class="mid-content">
+            <app-candle-stick-chart class="mid-content"></app-candle-stick-chart>
+        </div>
+        <div class="top-content">
+            <app-macd-chart class="top-content"></app-macd-chart>
+        </div>
+            
+        <!-- </mat-card-content> -->
+
+
+    </mat-card>
+

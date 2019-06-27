@@ -1,17 +1,17 @@
 
     <mat-card class = "area">
         <mat-card-header>
-            <mat-card-title>Stock Symbol</mat-card-title>
+            <mat-card-title>Stock Symbol: {{params.symbol}}</mat-card-title>
         </mat-card-header>
             
         <div class="top-content">
-            <app-rsi-chart></app-rsi-chart>
+            <app-rsi-chart [params]="params"></app-rsi-chart>
         </div>
         <div class="mid-content">
-            <app-candle-stick-chart ></app-candle-stick-chart>
+            <app-candle-stick-chart [params]="params"></app-candle-stick-chart>
         </div>
         <div class="top-content">
-            <app-macd-chart ></app-macd-chart>
+            <app-macd-chart [params]="params"></app-macd-chart>
         </div>
 
     </mat-card>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
   styleUrls: ['./macd-chart.component.scss']
 })
 export class MacdChartComponent implements OnInit {
+
+  @Input() params;
+
   MACDdataPoints = [];
   readyToPlot: boolean = false
 
@@ -16,7 +19,7 @@ export class MacdChartComponent implements OnInit {
   options = {
     series: {0: {type: "line", color: "blue"}, 1: {type: "line", color: "red"}, 2: {type: "steppedArea", color: "green"}},
     backgroundColor: '#303030',
-    chartArea: {left:80,top:0,width:'100%',height:'90%'},
+    chartArea: {left:80,top:5,width:'100%',height:'90%'},
     vAxis: {textStyle:{ color: 'snow'},
             ticks: [-2, -1, 0, 1, 2]
     },
@@ -29,7 +32,7 @@ export class MacdChartComponent implements OnInit {
   constructor(private avs: AlphaVantageService) { }
 
   ngOnInit() {
-    this.avs.getMACDinfo().subscribe(
+    this.avs.getMACDinfo(this.params.symbol, this.params.interval).subscribe(
       res => this.generateDataPoints(res)
     )
   }
@@ -41,6 +44,6 @@ export class MacdChartComponent implements OnInit {
       this.MACDdataPoints.unshift([entries[i][0], +entries[i][1]["MACD"], +entries[i][1]["MACD_Signal"], +entries[i][1]["MACD_Hist"]]);
     }
     this.readyToPlot = true;
-    console.log(this.MACDdataPoints)
+    // console.log(this.MACDdataPoints)
   }
 }

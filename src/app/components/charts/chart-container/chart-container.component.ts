@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chart-container',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartContainerComponent implements OnInit {
 
-  constructor() { }
+  params: {};
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(
+    params => {
+      this.params = params;
+      // console.log(params);
+    });
+   }
 
   ngOnInit() {
+
   }
 
 }

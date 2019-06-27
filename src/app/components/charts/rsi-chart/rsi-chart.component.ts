@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
   styleUrls: ['./rsi-chart.component.scss']
 })
 export class RsiChartComponent implements OnInit {
+
+  @Input() params;
+
   RSIdataPoints = [];
   chartType = "LineChart";
   chartTitle= "RSI"
@@ -26,7 +29,7 @@ export class RsiChartComponent implements OnInit {
   constructor(private avs: AlphaVantageService) { }
 
   ngOnInit() {
-    this.avs.getRSIinfo().subscribe(
+    this.avs.getRSIinfo(this.params.symbol, this.params.interval).subscribe(
       res => this.generateDataPoints(res)
     );
   }
@@ -39,7 +42,7 @@ export class RsiChartComponent implements OnInit {
     for(let i = 0; i<100; i++){
       this.RSIdataPoints.unshift([entries[i][0], +entries[i][1]["RSI"]])
     }
-    console.log(this.RSIdataPoints);
+    // console.log(this.RSIdataPoints);
     this.readyToPlot = true;
   }
 

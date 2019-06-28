@@ -13,8 +13,8 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'chart', component: ChartContainerComponent}
   ]},
-  // {path: '', redirectTo: 'main', pathMatch: 'full'},
-  // {path: '**', redirectTo: 'main', pathMatch: 'full'}
+  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  {path: '**', redirectTo: 'main', pathMatch: 'full'}
 ];
 
 @NgModule({

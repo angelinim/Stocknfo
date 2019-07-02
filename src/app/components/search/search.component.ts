@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
     this.avs.getSymbolSearch(stkname).subscribe(
       res => {
         this.stockList = res;
-        console.log(this.stockList)
+        // console.log(this.stockList)
         }
     );
 

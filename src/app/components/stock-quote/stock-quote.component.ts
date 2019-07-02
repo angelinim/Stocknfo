@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material';
 export class StockQuoteComponent implements OnInit, OnChanges {
 
 
-  @Input() symbol;
+  @Input() symbol: string;
   intervalSelect = "weekly"
   information: {} = {};//stores the stock information (i.e. the quote)
 
@@ -26,6 +26,7 @@ export class StockQuoteComponent implements OnInit, OnChanges {
                }
 
   ngOnInit() {
+    console.log(this.symbol);
   }
 
   //the symbol changes when a new company is searched for in the search component
@@ -36,7 +37,7 @@ export class StockQuoteComponent implements OnInit, OnChanges {
       //this makes the quote component more 
       //responsive.
       this.information = {};
-      this.avs.getStockQuote(this.symbol[0]).subscribe(
+      this.avs.getStockQuote(this.symbol).subscribe(
         info => {
             this.information = info;
             console.log(this.information)
@@ -67,7 +68,7 @@ export class StockQuoteComponent implements OnInit, OnChanges {
 
   addQuoteToWatchlist(){
 
-    this.userService.addToWatchlist(this.symbol[0]).then(
+    this.userService.addToWatchlist(this.symbol.toLowerCase()).then(
       response=> {
         if(response.isSuccess){
           this.snackbar.open(response.message,"",{duration: 4000});

@@ -28,7 +28,7 @@ export class AlphaVantageService {
       return this.http.get(this.urlForRequest+'&function=SYMBOL_SEARCH&keywords='+symbol)
       .pipe(
         map(info => info["bestMatches"].map(x => [x["1. symbol"], x["2. name"]])),
-        tap(info => console.log(info))
+        // tap(info => console.log(info))
       );
     }
     catch(err){
@@ -73,7 +73,7 @@ export class AlphaVantageService {
 
     return this.http.get<stockInformationOHLC>(this.urlForRequest + '&function=TIME_SERIES_INTRADAY&symbol='+symbol+'&interval='+interval)
     .pipe(
-      tap(info => console.log(info)),
+      // tap(info => console.log(info)),
       map(
         (info: stockInformationOHLC) => info = {
         metadata: info['Meta Data'],
@@ -122,6 +122,7 @@ export class AlphaVantageService {
 
   //gets general stock information from some user inputted symbol value
   getStockQuote(symbol: string){
+    console.log(symbol);
     try{
       return this.http.get(this.urlForRequest+'&function=GLOBAL_QUOTE&symbol='+symbol).pipe(
         map(info => info["Global Quote"])

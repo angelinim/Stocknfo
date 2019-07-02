@@ -1,8 +1,8 @@
 .watchlist-card{
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    max-height: 450px;
+    min-width: 275px;
+    max-height: 350px;
     margin: 5%;
 }
 

@@ -95,13 +95,16 @@ export class UserServiceService {
     return this.dbInteractionInformation;
   }
 
+  //takes a string new stock symbol and returns a database response
   async addToWatchlist(newStockSymbol): Promise<DBresponse>{
     var uid: string;
 
+    //gets the current user's id to navigate to their specific
+    //user document in the user collerction in firebase
     await this.afAuth.user.subscribe(x => uid = x.uid);
     
     this.afs.collection('users').doc(uid).update({"watchlist": firebase.firestore.FieldValue.arrayUnion(newStockSymbol)}).catch(
-      err =>{
+      err =>{ //error handling if the array union fails
         this.dbInteractionInformation ={
           isSuccess: false,
           message: err.message

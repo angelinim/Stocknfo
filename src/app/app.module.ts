@@ -11,7 +11,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule,
          MatIconModule, MatListModule, MatAutocompleteModule, 
          MatInputModule, MatCardModule, MatSelectModule, MatTableModule,
-         MatSnackBarModule } from '@angular/material';
+         MatSnackBarModule, MatGridListModule } from '@angular/material';
 import { CandleStickChartComponent } from './components/charts/candle-stick-chart/candle-stick-chart.component';
 
 
@@ -61,6 +61,7 @@ import { ChartContainerComponent } from './components/charts/chart-container/cha
     MatSelectModule,
     MatTableModule,
     MatSnackBarModule,
+    MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
     GoogleChartsModule,

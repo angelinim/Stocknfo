@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 
 @Component({
   selector: 'app-watchlist-card',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WatchlistCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() symbol;
+  info: {} = {};
+
+  constructor(private avs: AlphaVantageService) { }
 
   ngOnInit() {
+    this.avs.getStockQuote(this.symbol).subscribe(
+      res => this.info = res
+    );
   }
 
 }

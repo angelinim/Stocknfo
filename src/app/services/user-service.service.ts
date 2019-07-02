@@ -96,7 +96,7 @@ export class UserServiceService {
   }
 
   //takes a string new stock symbol and returns a database response
-  async addToWatchlist(newStockSymbol): Promise<DBresponse>{
+  async addToWatchlist(newStockSymbol: string): Promise<DBresponse>{
     var uid: string;
 
     //gets the current user's id to navigate to their specific
@@ -114,7 +114,24 @@ export class UserServiceService {
     );
 
     return this.dbInteractionInformation ={ isSuccess: true, message: "added to watchlist"};
+  }
 
+  async removeFromWatchlist(symbolToRemove: string){
+    var uid: string;
+
+    await this.afAuth.user.subscribe(x => uid = x.uid);
+
+    this.afs.collection('users').doc(uid).update({"watchlist": firebase.firestore.FieldValue.arrayRemove(symbolToRemove)}).catch(
+      err => {
+        this.dbInteractionInformation ={
+          isSuccess: false,
+          message: err.message
+        }
+        return this.dbInteractionInformation;
+      }
+    );
+
+    return this.dbInteractionInformation ={ isSuccess: true, message: "removed from watchlist"};
   }
 
   async logout(){

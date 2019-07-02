@@ -10,7 +10,7 @@ export interface stockNames{
 
 export interface User{
     userName: string;
-    userId: String;
+    userId: string;
     userEmail: String;
     watchlist?: string[];
   }

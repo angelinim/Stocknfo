@@ -19,17 +19,15 @@ export class SearchComponent implements OnInit {
     console.log('New name: ' +stkname);
     this._stockName = stkname;
 
-    if(this.searchNameLength % 2 === 0){
-      this.avs.getSymbolSearch(stkname).subscribe(
-        res => {
-          this.stockList = res;
+    this.avs.getSymbolSearch(stkname).subscribe(
+      res => {
+        this.stockList = res;
 
+        
+        console.log(this.stockList)
           
-          console.log(this.stockList)
-            
-          }
-      );
-    }
+        }
+    );
 
     this.searchNameLength++;
     console.log(this._stockName);

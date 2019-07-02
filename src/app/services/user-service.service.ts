@@ -7,7 +7,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { User, DBresponse } from 'src/app/interfaces/stock-information'
 
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, share, take, map } from 'rxjs/operators';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class UserServiceService {
       return false;
     };
 
-    }
+  }
 
   async createNewUser(email: string, password: string, userName: string){
 
@@ -69,7 +70,6 @@ export class UserServiceService {
 
     console.log(this.currentUser$);
     return this.dbInteractionInformation;
-    //await console.log(userCredential);
     
   }
 
@@ -95,6 +95,24 @@ export class UserServiceService {
     return this.dbInteractionInformation;
   }
 
+  async addToWatchlist(newStockSymbol): Promise<DBresponse>{
+    var uid: string;
+
+    await this.afAuth.user.subscribe(x => uid = x.uid);
+    
+    this.afs.collection('users').doc(uid).update({"watchlist": firebase.firestore.FieldValue.arrayUnion(newStockSymbol)}).catch(
+      err =>{
+        this.dbInteractionInformation ={
+          isSuccess: false,
+          message: err.message
+        }
+        return this.dbInteractionInformation;
+      }
+    );
+
+    return this.dbInteractionInformation ={ isSuccess: true, message: "added to watchlist"};
+
+  }
 
   async logout(){
     await this.afAuth.auth.signOut();

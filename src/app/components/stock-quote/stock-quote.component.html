@@ -10,7 +10,7 @@
       </mat-card-header>
 
       <!-- have to create an add to watchlist function to firebase service -->
-      <button mat-stroked-button color='primary' class="button">Add To Watchlist</button>
+      <button mat-stroked-button color='primary' class="button" (click)="addQuoteToWatchlist()">Add To Watchlist</button>
       <button mat-stroked-button color='primary' class="button" (click)="loadChart()">View Chart</button>
       <mat-form-field>
           <mat-label>Interval</mat-label>

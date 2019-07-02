@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserServiceService } from 'src/app/services/user-service.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-stock-quote',
@@ -17,6 +19,8 @@ export class StockQuoteComponent implements OnInit, OnChanges {
 
 
   constructor(private avs: AlphaVantageService,
+              private userService: UserServiceService,
+              public snackbar: MatSnackBar,
               private router: Router) {
                 
                }
@@ -60,4 +64,20 @@ export class StockQuoteComponent implements OnInit, OnChanges {
   loadChart(){
     this.router.navigate(['main/chart', {symbol: this.information["01. symbol"], interval: this.intervalSelect}]);
   }
+
+  addQuoteToWatchlist(){
+
+    this.userService.addToWatchlist(this.symbol[0]).then(
+      response=> {
+        if(response.isSuccess){
+          this.snackbar.open(response.message,"",{duration: 4000});
+        }
+        else{
+          this.snackbar.open(response.message);
+        }
+      }
+    );
+  }
+
+
 }

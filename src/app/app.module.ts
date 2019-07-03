@@ -29,6 +29,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RsiChartComponent } from './components/charts/rsi-chart/rsi-chart.component';
 import { MacdChartComponent } from './components/charts/macd-chart/macd-chart.component';
 import { ChartContainerComponent } from './components/charts/chart-container/chart-container.component';
+import { HomeComponent } from './components/home/home.component';
+import { HomeChartsComponent } from './components/charts/home-charts/home-charts.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { ChartContainerComponent } from './components/charts/chart-container/cha
     LoginComponent,
     RsiChartComponent,
     MacdChartComponent,
-    ChartContainerComponent
+    ChartContainerComponent,
+    HomeComponent,
+    HomeChartsComponent
   ],
   imports: [
     BrowserModule,

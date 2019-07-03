@@ -31,4 +31,8 @@ export class MainNavigationComponent {
     this.router.navigate(['main/search']);
   }
 
+  home(){
+    this.router.navigate(['main/home'])
+  }
+
 }

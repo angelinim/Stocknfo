@@ -1,0 +1,16 @@
+
+<google-chart *ngIf="readyToPlotDOW" class="test" #chart
+[title]="chartTitle"
+[type]="chartType"
+[data]="dataPointsDOW"
+[columnNames]="columnNames"
+[options]="options">
+</google-chart>
+
+<google-chart *ngIf="readyToPlotQQQ" class="test" #chart
+[title]="chartTitleQQQ"
+[type]="chartType"
+[data]="dataPointsQQQ"
+[columnNames]="columnNames"
+[options]="options">
+</google-chart>

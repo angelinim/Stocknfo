@@ -129,8 +129,22 @@ export class AlphaVantageService {
       );
     }
     catch(err){
-
+      console.log("ERROR GETTING QUOTE: "+err.message);
     }
+  }
+
+  getDailyAdjustedDOW(){
+    return this.http.get(this.urlForRequest+'&function=TIME_SERIES_DAILY_ADJUSTED&symbol=DOW').pipe(
+      map(info => info["Time Series (Daily)"]),
+      // tap(info => console.log(info))
+    );
+
+  }
+
+  getDailyAdjustedQQQ(){
+    return this.http.get(this.urlForRequest+'&function=TIME_SERIES_DAILY_ADJUSTED&symbol=QQQ').pipe(
+      map(info => info["Time Series (Daily)"])
+    );
   }
 
 

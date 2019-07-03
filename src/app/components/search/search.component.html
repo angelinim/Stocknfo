@@ -9,7 +9,7 @@
                             [matAutocomplete]="auto"
                             style="text-transform:uppercase">
             <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let stock of stockList;" [value]="stock">
+              <mat-option *ngFor="let stock of stockList;" [value]="stock[0]">
                 {{stock[0]}} | {{stock[1]}}
               </mat-option>
             </mat-autocomplete>

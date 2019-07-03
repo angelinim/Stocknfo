@@ -12,7 +12,9 @@ import { MatSnackBar } from '@angular/material';
 export class StockQuoteComponent implements OnInit, OnChanges {
 
 
+  //this is the stock symbol input FROM the search component
   @Input() symbol: string;
+  //this is the default choice on the dropdown menu for charts
   intervalSelect = "weekly"
   information: {} = {};//stores the stock information (i.e. the quote)
 
@@ -79,6 +81,5 @@ export class StockQuoteComponent implements OnInit, OnChanges {
       }
     );
   }
-
 
 }

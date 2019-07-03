@@ -21,11 +21,15 @@
 }
 
 .card{
-    position: relative;
-    width:90%;
-    height:90%;
-    margin-left: 3%;
-    margin-top: 3%;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .form{

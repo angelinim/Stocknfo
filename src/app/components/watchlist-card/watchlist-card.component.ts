@@ -17,7 +17,7 @@ export class WatchlistCardComponent implements OnInit {
 
   ngOnInit() {
     this.avs.getStockQuote(this.symbol).subscribe(
-      res => this.info = res
+      res => {this.info = res; console.log(res)}
     );
   }
 

@@ -1,23 +1,20 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav opened mode="side" position="end" class="sidenav">
     <mat-toolbar><mat-icon>account_circle</mat-icon><span>Account</span></mat-toolbar>
-    <div *ngIf="userService.currentUser$ | async; then loggedIn else notLoggedIn">
-      
-    </div>
 
-    <ng-template #notLoggedIn>
+    <div *ngIf="!isLoggedIn">
       <mat-divider class="divider"></mat-divider>
       <button mat-button color="primary" class="button" (click)="login()">Login</button>
       <mat-divider class="divider"></mat-divider>
-    </ng-template>
+    </div>
 
-    <ng-template #loggedIn>
+    <div *ngIf="isLoggedIn">
       <mat-divider class="divider"></mat-divider>
       <button mat-button color="primary" class="button" (click)="logout()">Logout</button>
       <mat-divider class="divider"></mat-divider>
       <button mat-button color="primary" class="button" (click)="watchlist()">Watchlist</button>
       <mat-divider class="divider"></mat-divider>
-    </ng-template>
+    </div>
 
   </mat-sidenav>
 
@@ -31,5 +28,4 @@
   </mat-sidenav>
 
   <router-outlet></router-outlet>
-  <!-- <app-home-charts></app-home-charts> -->
 </mat-sidenav-container>

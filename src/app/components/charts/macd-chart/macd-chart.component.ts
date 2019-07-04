@@ -20,8 +20,7 @@ export class MacdChartComponent implements OnInit {
     series: {0: {type: "line", color: "blue"}, 1: {type: "line", color: "red"}, 2: {type: "steppedArea", color: "green"}},
     backgroundColor: '#303030',
     chartArea: {left:80,top:5,width:'100%',height:'90%'},
-    vAxis: {textStyle:{ color: 'snow'},
-            ticks: [-2, -1, 0, 1, 2]
+    vAxis: {textStyle:{ color: 'snow'}
     },
     hAxis: {textPosition: 'none', gridlines: {count: 25}},
     crosshair: {trigger: 'both',

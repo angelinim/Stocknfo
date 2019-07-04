@@ -11,11 +11,13 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class WatchlistComponent implements OnInit {
   watchList: string[] = [];
 
-  constructor(private avs: AlphaVantageService,
-              private user: UserServiceService) { }
+  constructor(private user: UserServiceService) { }
 
   ngOnInit() {
-    this.user.currentUser$.subscribe(x => this.watchList = x.watchlist);
+    this.user.currentUser$.subscribe(x => {
+      this.watchList = x.watchlist
+      console.log(this.watchList);
+    });
   }
 
 }

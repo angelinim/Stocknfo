@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { auth } from 'firebase/app';
@@ -20,23 +20,21 @@ export class UserServiceService {
 
   constructor(private afAuth: AngularFireAuth,
               private afs: AngularFirestore,
-              private router: Router) {
+              private router: Router,
+              private zone: NgZone) {
 
       this.currentUser$ = this.afAuth.authState.pipe(
         switchMap(user => {
           if(user){
+            console.log("logged in")
             return this.afs.doc<User>('users/'+user.uid).valueChanges();
           }
           else{
+            console.log("logged out")
             return of (null);
           }
         })
       );
-
-
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
-      return false;
-    };
 
   }
 
@@ -49,7 +47,7 @@ export class UserServiceService {
           userName: userName,
           userId: cred.user.uid,
           userEmail: email,
-          watchlist: ["VZ", "MSFT"]
+          watchlist: ["vz", "msft"]
         }
         
         this.afs.doc('users/'+cred.user.uid).set(data);
@@ -73,26 +71,22 @@ export class UserServiceService {
     
   }
 
-  async login(email: string, password: string){
+  login(email: string, password: string){
 
-    await this.afAuth.auth.signInWithEmailAndPassword(email, password).then(
-      cred =>{
-        this.currentUser$ = this.afs.doc<User>('users/'+cred.user.uid).valueChanges();
-        this.dbInteractionInformation ={
-          isSuccess: true,
-          message: "Log in Successful... Welcome Back"
+    this.zone.runOutsideAngular(async () =>{
+      await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(
+        () =>{
+          this.zone.run(() => this.router.navigate(['main/watchlist']));
         }
-      }
-    ).catch(
-      err => {
-        console.log(err.message);
-        this.dbInteractionInformation ={
-          isSuccess: false,
-          message: err.message
+      ).catch(
+        err => {
+          console.log(err.message);
         }
-      }
-    );
-    return this.dbInteractionInformation;
+      );
+    });
+
+
   }
 
   //takes a string new stock symbol and returns a database response

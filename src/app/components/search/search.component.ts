@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { stockNames } from 'src/app/interfaces/stock-information';
 import { forkJoin } from 'rxjs';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-search',
@@ -40,7 +41,7 @@ export class SearchComponent implements OnInit {
     console.log("SENDING:  " + this.stockSymbol);
   }
 
-  constructor(private avs: AlphaVantageService) { }
+  constructor(private avs: AlphaVantageService, private userService: UserServiceService) { }
 
   ngOnInit() {
   }

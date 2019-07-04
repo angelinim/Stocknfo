@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -66,17 +66,8 @@ export class LoginComponent implements OnInit {
     const pass = newUser.logPass;
 
     if(email && pass){
-      this.userService.login(email, pass).then(
-        response => {
-          if(response.isSuccess){
-            this.router.navigate(['main/watchlist']);
-            this.snackbar.open(response.message,"",{duration: 4000});
-          }
-          else{
-            this.snackbar.open(response.message);
-          }
-        }
-      );
+      this.userService.login(email, pass)
+        
     }
     else{
       this.snackbar.open("please enter valid Email and password...", "", { duration: 4000} )

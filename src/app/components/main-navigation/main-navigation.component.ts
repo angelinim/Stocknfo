@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,16 @@ import { Router } from '@angular/router';
   templateUrl: './main-navigation.component.html',
   styleUrls: ['./main-navigation.component.css']
 })
-export class MainNavigationComponent {
+export class MainNavigationComponent implements OnInit{
+ 
+  isLoggedIn: boolean = false;
+  ngOnInit(): void {
+    
+    this.userService.currentUser$.subscribe(user =>{
+      if(user){this.isLoggedIn = true}
+      else{this.isLoggedIn = false}
+    })
+  }
 
   constructor(private router: Router,
               private userService: UserServiceService) {}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
   templateUrl: './rsi-chart.component.html',
   styleUrls: ['./rsi-chart.component.scss']
 })
-export class RsiChartComponent implements OnInit {
+export class RsiChartComponent implements OnInit, OnChanges {
 
   @Input() params;
 
@@ -14,6 +14,8 @@ export class RsiChartComponent implements OnInit {
   chartType = "LineChart";
   chartTitle= "RSI"
   options = {
+    titlePosition: 'in',
+    titleTextStyle: {color: "snow", fontSize: 16},
     backgroundColor: '#303030',
     chartArea: {left:80,top:12,width:'100%',height:'90%'},
     vAxis: {textStyle:{ color: 'snow'},
@@ -28,14 +30,20 @@ export class RsiChartComponent implements OnInit {
 
   constructor(private avs: AlphaVantageService) { }
 
-  ngOnInit() {
-    this.avs.getRSIinfo(this.params.symbol, this.params.interval).subscribe(
+  ngOnInit() {}
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    this.readyToPlot = false;
+
+    this.avs.getRSIinfo(changes.params.currentValue.symbol, changes.params.currentValue.interval).subscribe(
       res => this.generateDataPoints(res)
     );
   }
 
   generateDataPoints(info){
     const entries = Object.entries(info);
+
+    this.RSIdataPoints = [];
 
     //gets the first 100 datapoints only. That is the
     //amount returned opon calling for OHLC data

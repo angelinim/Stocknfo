@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AlphaVantageService } from 'src/app/services/alpha-vantage.service';
 import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
 
@@ -7,7 +7,7 @@ import { stockInformationOHLC } from 'src/app/interfaces/stock-information';
   templateUrl: './candle-stick-chart.component.html',
   styleUrls: ['./candle-stick-chart.component.scss']
 })
-export class CandleStickChartComponent implements OnInit {
+export class CandleStickChartComponent implements OnInit, OnChanges {
 
   @Input() params;
 
@@ -34,20 +34,26 @@ export class CandleStickChartComponent implements OnInit {
 
   constructor(private avs: AlphaVantageService) { }
 
- ngOnInit() {
-    this.avs.getOHLCinfo(this.params.symbol, this.params.interval).subscribe(
+ ngOnInit() {}
+
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    // console.log("CHANGES FROM CANDLESTICK:")
+    // console.log(changes.params.currentValue.interval);
+    this.readyToPlot = false;
+    this.avs.getOHLCinfo(changes.params.currentValue.symbol, changes.params.currentValue.interval).subscribe(
       OHLCdata=>{
-        this.data = OHLCdata;
-        console.log(this.data);
-        this.generateDataPointLists(this.data);
+        this.generateDataPointLists(OHLCdata);
       }
     );
   }
 
 
+
   generateDataPointLists(jsonData: stockInformationOHLC): void{
 
     const entries = Object.entries(jsonData.timeSeries);
+
+    this.OHLCdataPoints = [];
 
     //going to leave this here. using the other loop for now because
     //getting weekly or monthly data will generate a graph with

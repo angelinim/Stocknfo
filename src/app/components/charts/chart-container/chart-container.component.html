@@ -2,6 +2,22 @@
     <mat-card class = "area">
         <mat-card-header>
             <mat-card-title>Stock Symbol: {{params.symbol}}</mat-card-title>
+            <mat-card-subtitle>Interval: {{params.interval}}</mat-card-subtitle>
+            <div class="change-interval">
+                <mat-form-field>
+                    <mat-label>Interval</mat-label>
+                    <mat-select [(value)]="intervalSelect">
+                    <mat-option value="monthly">Monthly</mat-option>
+                    <mat-option value="weekly">Weekly  </mat-option>
+                    <mat-option value="daily">Daily    </mat-option>
+                    <mat-option value="60min">60 min   </mat-option>
+                    <mat-option value="30min">30 min   </mat-option>
+                    <mat-option value="15min">15 min   </mat-option>
+                    <mat-option value="5min">5 min     </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-stroked-button color='primary' class="button" (click)="onIntervalChange()">View Chart</button>
+            </div>
         </mat-card-header>
             
         <div class="top-content">

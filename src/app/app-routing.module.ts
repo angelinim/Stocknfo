@@ -8,15 +8,15 @@ import { ChartContainerComponent } from './components/charts/chart-container/cha
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path: 'main', component: MainNavigationComponent, children: [
-    {path: 'home', component: HomeComponent},
-    {path: 'search', component: SearchComponent},
-    {path: 'watchlist', component: WatchlistComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'chart', component: ChartContainerComponent}
-  ]},
-  {path: '', redirectTo: 'main/home', pathMatch: 'full'},
-  {path: '**', redirectTo: 'main/home', pathMatch: 'full'}
+  // {path: 'main', component: MainNavigationComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'search', component: SearchComponent},
+  {path: 'watchlist', component: WatchlistComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'chart', component: ChartContainerComponent},
+
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@ export class WatchlistCardComponent implements OnInit {
   }
 
   loadChart(){
-    this.router.navigate(['main/chart', {symbol: this.info["01. symbol"], interval: "weekly"}]);
+    this.router.navigate(['chart', {symbol: this.info["01. symbol"], interval: "weekly"}]);
   }
 
   removeStock(){

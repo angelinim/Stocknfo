@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.userService.createNewUser(newUser.regEmail, newUser.regPass, newUser.regUname).then(
         response => {
           if(response.isSuccess){
-            this.router.navigate(['main/home']);
+            this.router.navigate(['home']);
             this.snackbar.open(response.message,"",{duration: 4000});
           }
           else{

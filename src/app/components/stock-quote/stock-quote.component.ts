@@ -65,7 +65,7 @@ export class StockQuoteComponent implements OnInit, OnChanges {
   //this will navigate to the chart component with the entered symbol
   //and the interval that the user choses in this component.
   loadChart(){
-    this.router.navigate(['main/chart', {symbol: this.information["01. symbol"], interval: this.intervalSelect}]);
+    this.router.navigate(['chart', {symbol: this.information["01. symbol"], interval: this.intervalSelect}]);
   }
 
   addQuoteToWatchlist(){

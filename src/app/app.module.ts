@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { MacdChartComponent } from './components/charts/macd-chart/macd-chart.co
 import { ChartContainerComponent } from './components/charts/chart-container/chart-container.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomeChartsComponent } from './components/charts/home-charts/home-charts.component';
+import { MustLoginComponent } from './components/must-login/must-login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { HomeChartsComponent } from './components/charts/home-charts/home-charts
     MacdChartComponent,
     ChartContainerComponent,
     HomeComponent,
-    HomeChartsComponent
+    HomeChartsComponent,
+    MustLoginComponent
   ],
   imports: [
     BrowserModule,
